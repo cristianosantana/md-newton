@@ -2,6 +2,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.stream.IntStream;
 
 import static java.lang.Math.abs;
 
@@ -21,6 +22,7 @@ public class Fase1 {
 
         double fx = 0;
         List<Double> funcoes = new ArrayList<>(100);
+
 
         for (double x = INTERVALO_INCIO; x <= INTERVALO_FIM; x+=INTERVALO_PASSO) {
             fx = 0;
@@ -47,7 +49,7 @@ public class Fase1 {
 
     }
 
-    public static List<String> raizesNoIntervalo(List<Double> funcoes, List<Double> funcoesDerivadas){
+    public static List<String> raizesNoIntervalo(Polinomio p, List<Double> funcoes, List<Double> funcoesDerivadas){
 
         double x = INTERVALO_INCIO;
         List<String> intervalosComRaiz = new ArrayList<>();
@@ -57,14 +59,20 @@ public class Fase1 {
 
 
             /**
-             *  Adicione    
-             *  ao if abaixo para tambem receber o intervalo que contem os pontos minimos e maximos
+             * Neste IF é preciso verificar se o polinomio tem somente UM termo, se isso for verdade,
+             * ele utilzará mais uma condição para encontrar os intervalos das raízes.
              */
-            
-            if ( (funcoes.get(i)*funcoes.get(i+1) > 0 && funcoesDerivadas.get(i)*funcoesDerivadas.get(i+1) < 0) ||
-                    funcoes.get(i)*funcoes.get(i+1) < 0) {
 
-                intervalosComRaiz.add(intervalo);
+            if (p.ehPolinomioComUmTermo()) {
+                if ( (funcoes.get(i)*funcoes.get(i+1) > 0 && funcoesDerivadas.get(i)*funcoesDerivadas.get(i+1) < 0) ||
+                        funcoes.get(i)*funcoes.get(i+1) < 0) {
+
+                    intervalosComRaiz.add(intervalo);
+                }
+            } else {
+                if (funcoes.get(i)*funcoes.get(i+1) < 0) {
+                    intervalosComRaiz.add(intervalo);
+                }
             }
 
             x+=INTERVALO_PASSO;

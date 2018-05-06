@@ -384,8 +384,8 @@ public class Tela extends javax.swing.JFrame {
         Fase1.mostrarFuncoesCalculadas(funcoes);
         Fase1.mostrarFuncoesCalculadas(funcoesDerivadas);
 
-        List<String> raizesNoIntervalo = Fase1.raizesNoIntervalo(funcoes, funcoesDerivadas);
-        List<String> raizesNoIntervalo1 = Fase1.raizesNoIntervalo(funcoes, funcoesDerivadas);
+        List<String> raizesNoIntervalo = Fase1.raizesNoIntervalo(p, funcoes, funcoesDerivadas);
+        List<String> raizesNoIntervalo1 = Fase1.raizesNoIntervalo(p, funcoes, funcoesDerivadas);
         List<String> intervalosRaizes = Fase1.retornaIntervalosComRaiz(raizesNoIntervalo);
         List<String> intervalosRaizes1 = Fase1.retornaIntervalosComRaiz(raizesNoIntervalo1);
         if (intervalosRaizes == null) {

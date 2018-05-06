@@ -1,3 +1,5 @@
+import java.util.stream.IntStream;
+
 public class Polinomio {
     private int[] coef;
     private int degree;
@@ -150,6 +152,21 @@ public class Polinomio {
 
     public int[] getCoef() {
         return coef;
+    }
+
+    public boolean ehPolinomioComUmTermo(){
+
+        /**
+         * Este IF verifica se o polinomio tem apenas um termo, pois isso faz diferença quando os intervalos
+         * das raízes forem encontrados.
+         *
+         * Ele verifica se a soma dos coeficientes do polinomio é igual ao coeficiente de maior grau,
+         * o que significa que todos os coeficientes, com exceção do de maior grau, são ZERO.
+         */
+        if (IntStream.of(getCoef()).sum() == getCoef()[ degree() ]){
+            return true;
+        }
+        return false;
     }
 }
 
